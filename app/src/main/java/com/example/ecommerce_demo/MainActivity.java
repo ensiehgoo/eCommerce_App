@@ -66,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if(dataSnapshot.child("Users").child(phoneNumber).exists()){
+
                     Users usersdata = dataSnapshot.child("Users").child(phoneNumber).getValue(Users.class);
+
                     if(usersdata.getPhoneNumber().equals(phoneNumber)){
+
                         if(usersdata.getPassword().equals(password)){
                             Toast.makeText(MainActivity.this, "You are already Logged in!", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();

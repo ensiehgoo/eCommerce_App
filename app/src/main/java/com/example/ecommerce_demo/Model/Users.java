@@ -1,16 +1,18 @@
 package com.example.ecommerce_demo.Model;
 
 public class Users {
-    private String name, country, phoneNumber, password;
+    private String name, country, phoneNumber, password,image, address;
 
     public Users() {
     }
 
-    public Users(String name, String country, String phoneNumber, String password) {
+    public Users(String name, String country, String phoneNumber, String password, String image, String address) {
         this.name = name;
         this.country = country;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.image = image;
+        this.address = address;
     }
 
     public String getName() {
@@ -43,5 +45,21 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
