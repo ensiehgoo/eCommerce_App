@@ -50,7 +50,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_setting);
 
         storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
 
@@ -77,7 +77,7 @@ public class SettingActivity extends AppCompatActivity {
                 if(checker.equals("clicked")){
                     userInfoSaved();
                 }else{
-                   updateOnlyUserInfo();
+                    updateOnlyUserInfo();
                 }
             }
         });
@@ -89,7 +89,7 @@ public class SettingActivity extends AppCompatActivity {
 
                 CropImage.activity(imageUri)
                         .setAspectRatio(1,1)
-                        .start(SettingsActivity.this);
+                        .start(SettingActivity.this);
 
 
             }
@@ -102,15 +102,15 @@ public class SettingActivity extends AppCompatActivity {
 
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK)
         {
-           CropImage.ActivityResult result = CropImage.getActivityResult(data);
-           imageUri = result.getUri();
-           profileImageView.setImageURI(imageUri);
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            imageUri = result.getUri();
+            profileImageView.setImageURI(imageUri);
         }
         else
         {
             Toast.makeText(this,"ERROR, Try Again.",Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(SettingsActivity.this,SettingsActivity.class));
+            startActivity(new Intent(SettingActivity.this,SettingActivity.class));
             finish();
         }
     }
@@ -132,8 +132,8 @@ public class SettingActivity extends AppCompatActivity {
 
 
 
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-        Toast.makeText(SettingsActivity.this, "Profile info updated successfully.", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(SettingActivity.this, MainActivity.class));
+        Toast.makeText(SettingActivity.this, "Profile info updated successfully.", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -144,7 +144,7 @@ public class SettingActivity extends AppCompatActivity {
     public  void userInfoSaved(){
         if (TextUtils.isEmpty(fullNameEditText.getText().toString()))
         {
-           Toast.makeText(this,"Name is mandatory.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Name is mandatory.",Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(addressEditText.getText().toString()))
         {
@@ -157,7 +157,7 @@ public class SettingActivity extends AppCompatActivity {
         else if(checker.equals("clicked")){
             uploadImage();
         }
-        
+
     }
 
     private void uploadImage() {
@@ -202,17 +202,17 @@ public class SettingActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                        Toast.makeText(SettingsActivity.this, "Profile info updated successfully.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
+                        Toast.makeText(SettingActivity.this, "Profile info updated successfully.", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     else{
                         progressDialog.dismiss();
-                        Toast.makeText(SettingsActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingActivity.this,"Error",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-           }
+        }
         else {
             Toast.makeText(this,"image is not selected.",Toast.LENGTH_SHORT).show();
         }
