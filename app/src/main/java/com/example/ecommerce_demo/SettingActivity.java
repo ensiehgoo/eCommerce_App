@@ -202,7 +202,7 @@ public class SettingActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
+                        startActivity(new Intent(SettingActivity.this, HomeActivity.class));
                         Toast.makeText(SettingActivity.this, "Profile info updated successfully.", Toast.LENGTH_SHORT).show();
                         finish();
                     }

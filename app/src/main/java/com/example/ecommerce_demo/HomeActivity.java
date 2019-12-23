@@ -80,7 +80,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
-                .build();
+                .build();   //Amare 10 mins time de
 
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -112,11 +112,22 @@ implements NavigationView.OnNavigationItemSelectedListener{
         FirebaseRecyclerAdapter<Products,ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-                      holder.txtProductName.setText(model.getName());
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model)
+                    {
+                        holder.txtProductName.setText(model.getName());
                         holder.txtProductPrice.setText("Price = "+model.getPrice()+"TK");
                         holder.txtProductDescription.setText(model.getDescription());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                                intent.putExtra("pid",model.getPid());
+                                startActivity(intent);
+                            }
+                        });
+
                     }
 
                     @NonNull
@@ -162,7 +173,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
         }
         else if(id == R.id.nav_settings){
-         Intent intent = new Intent(HomeActivity.this,SettingActivity.class);
+         Intent intent = new Intent(HomeActivity.this,SettingActivity.class);   //where is the resource file of the buttons?
          startActivity(intent);
         }
         else if(id == R.id.nav_logout){
